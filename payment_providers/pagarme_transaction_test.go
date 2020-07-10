@@ -4,10 +4,11 @@ import (
 	"codeshop-payment/domain"
 	"codeshop-payment/payment_providers"
 	"encoding/json"
-	"github.com/stretchr/testify/require"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 var transactionRequest domain.TransactionRequest
@@ -28,7 +29,7 @@ func init() {
 		},
 	}
 
-	customer := domain.Customer{
+	customer := domain.CustomerPagarMe{
 		ExternalId:   "#3311",
 		Name:         "Morpheus Fishburne",
 		CustomerType: "individual",
@@ -91,7 +92,7 @@ func TestPagarmeTransactionProcessApproved(t *testing.T) {
 		SubscriptionId:        "",
 		Phone:                 "",
 		Address:               "",
-		Customer: domain.Customer{
+		Customer: domain.CustomerPagarMe{
 			ID:               "",
 			Object:           "customer",
 			RemoteCustomerID: 3348969,

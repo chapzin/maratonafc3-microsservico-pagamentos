@@ -4,9 +4,10 @@ import (
 	"codeshop-payment/domain"
 	"codeshop-payment/payment_providers"
 	"encoding/json"
-	"github.com/satori/go.uuid"
-	"github.com/stretchr/testify/require"
 	"testing"
+
+	uuid "github.com/satori/go.uuid"
+	"github.com/stretchr/testify/require"
 )
 
 var transactionResponseJsonSubscriptionApproved string
@@ -129,7 +130,7 @@ func TestConvertJsonToTransactionApprovedResponse(t *testing.T) {
 		SubscriptionId:        "",
 		Phone:                 "",
 		Address:               "",
-		Customer: domain.Customer{
+		Customer: domain.CustomerPagarMe{
 			ID:               "",
 			Object:           "customer",
 			RemoteCustomerID: 3348969,
@@ -140,11 +141,11 @@ func TestConvertJsonToTransactionApprovedResponse(t *testing.T) {
 			DocumentType:     "cpf",
 			Name:             "Morpheus Fishburne",
 			Email:            "mopheus@nabucodonozor.com",
-			PhoneNumbers: phoneNumbers,
-			BornAt:      "",
-			Birthday:    "",
-			Gender:      "",
-			DateCreated: "2020-06-29T01:07:43.111Z",
+			PhoneNumbers:     phoneNumbers,
+			BornAt:           "",
+			Birthday:         "",
+			Gender:           "",
+			DateCreated:      "2020-06-29T01:07:43.111Z",
 			Documents: []domain.CustomerDocuments{
 				{
 
@@ -157,7 +158,7 @@ func TestConvertJsonToTransactionApprovedResponse(t *testing.T) {
 		},
 		Billing:  "",
 		Shipping: "",
-		Items: []string{},
+		Items:    []string{},
 		Card: domain.CardResponseTransaction{
 			Object:         "card",
 			ID:             "card_ckbzsyxth0a6pj86d4ndteluf",

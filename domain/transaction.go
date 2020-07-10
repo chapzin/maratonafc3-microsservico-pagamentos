@@ -11,23 +11,23 @@ type PaymentProvider interface {
 
 // TransactionRequest is responsible to handle data received from a regular transaction request
 type TransactionRequest struct {
-	ID                   string    `json:"-"`
-	SecretKey            string    `json:"secret_key"`
-	Client               *Client   `json:"-"`
-	Gateway              Gateway   `json:"gateway"`
-	APIKey               string    `json:"api_key"`
-	TransactionClientID  string    `json:"transaction_client_id"`
-	PaymentMethod        string    `json:"payment_method"`
-	Amount               int       `json:"amount"`
-	CardHash             string    `json:"card_hash"`
-	PostbackURL          string    `json:"postback_url"`
-	async                bool      `json:"async"`
-	Installments         int       `json:"installments"`
-	BoletoExpirationDate time.Time `json:"boleto_expiration_date"`
-	SoftDescriptor       string    `json:"soft_descriptor"`
-	Capture              bool      `json:"capture"`
-	BoletoInstructions   string    `json:"boleto_instructions"`
-	Customer             Customer  `json:"customer"`
+	ID                   string          `json:"-"`
+	SecretKey            string          `json:"secret_key"`
+	Client               *Client         `json:"-"`
+	Gateway              Gateway         `json:"gateway"`
+	APIKey               string          `json:"api_key"`
+	TransactionClientID  string          `json:"transaction_client_id"`
+	PaymentMethod        string          `json:"payment_method"`
+	Amount               int             `json:"amount"`
+	CardHash             string          `json:"card_hash"`
+	PostbackURL          string          `json:"postback_url"`
+	async                bool            `json:"async"`
+	Installments         int             `json:"installments"`
+	BoletoExpirationDate time.Time       `json:"boleto_expiration_date"`
+	SoftDescriptor       string          `json:"soft_descriptor"`
+	Capture              bool            `json:"capture"`
+	BoletoInstructions   string          `json:"boleto_instructions"`
+	Customer             CustomerPagarMe `json:"customer"`
 }
 
 // TransactionSubscriptionRequest is responsible to handle data received from a subscription request
@@ -84,52 +84,52 @@ type TransactionResponse struct {
 	ID                    string `json:"transaction_id"`
 	Client                *Client
 	Provider              *Gateway
-	ProcessType           string   `json:"object"`
-	Status                string   `json:"status"`
-	RefuseReason          string   `json:"refuse_reason"`
-	StatusReason          string   `json:"status_reason"`
-	AcquirerResponseCode  string   `json:"acquirer_response_code"`
-	AcquirerName          string   `json:"acquirer_name"`
-	AcquirerId            string   `json:"acquirer_id"`
-	AuthorizationCode     string   `json:"authorization_code"`
-	SoftDescriptor        string   `json:"soft_descriptor"`
-	TID                   int      `json:"tid"`
-	NSU                   int      `json:"nsu"`
-	CreatedAt             string   `json:"date_created"`
-	UpdatedAt             string   `json:"date_updated"`
-	Amount                int      `json:"amount"`
-	AuthorizedAmount      int      `json:"authorized_amount"`
-	PaidAmount            int      `json:"paid_amount"`
-	RefundedAmount        int      `json:"refunded_amount"`
-	Installments          int      `json:"installments"`
-	RemoteTransactionID   int      `json:"id"`
-	Cost                  int      `json:"cost"`
-	CardHolderName        string   `json:"card_holder_name"`
-	CardLastDigits        string   `json:"card_last_digits"`
-	CardFirstDigits       string   `json:"card_first_digits"`
-	CardBrand             string   `json:"card_brand"`
-	CardPinMode           string   `json:"card_pin_mode"`
-	CardMagstripeFallback bool     `json:"card_magstripe_fallback"`
-	CvmPin                bool     `json:"cvm_pin"`
-	PostbackURL           string   `json:"postback_url"`
-	PaymentMethod         string   `json:"payment_method"`
-	CaptureMethod         string   `json:"capture_method"`
-	AntifraudScore        string   `json:"antifraud_score"`
-	BoletoURL             string   `json:"boleto_url"`
-	BoletoBarcode         string   `json:"boleto_barcode"`
-	BoletoExpirationDate  string   `json:"boleto_expiration_date"`
-	Referer               string   `json:"referer"`
-	IP                    string   `json:"ip"`
-	SubscriptionId        string   `json:"subscription_id"`
-	Phone                 string   `json:"phone"`
-	Address               string   `json:"address"`
-	Customer              Customer `json:"customer"`
-	Billing               string   `json:"billing"`
-	Shipping              string   `json:"shipping"`
-	Items                 []string `json:"items"`
-	Card       CardResponseTransaction `json:"card"`
-	SplitRules string                  `json:"split_rules"`
-	Metadata   struct {
+	ProcessType           string                  `json:"object"`
+	Status                string                  `json:"status"`
+	RefuseReason          string                  `json:"refuse_reason"`
+	StatusReason          string                  `json:"status_reason"`
+	AcquirerResponseCode  string                  `json:"acquirer_response_code"`
+	AcquirerName          string                  `json:"acquirer_name"`
+	AcquirerId            string                  `json:"acquirer_id"`
+	AuthorizationCode     string                  `json:"authorization_code"`
+	SoftDescriptor        string                  `json:"soft_descriptor"`
+	TID                   int                     `json:"tid"`
+	NSU                   int                     `json:"nsu"`
+	CreatedAt             string                  `json:"date_created"`
+	UpdatedAt             string                  `json:"date_updated"`
+	Amount                int                     `json:"amount"`
+	AuthorizedAmount      int                     `json:"authorized_amount"`
+	PaidAmount            int                     `json:"paid_amount"`
+	RefundedAmount        int                     `json:"refunded_amount"`
+	Installments          int                     `json:"installments"`
+	RemoteTransactionID   int                     `json:"id"`
+	Cost                  int                     `json:"cost"`
+	CardHolderName        string                  `json:"card_holder_name"`
+	CardLastDigits        string                  `json:"card_last_digits"`
+	CardFirstDigits       string                  `json:"card_first_digits"`
+	CardBrand             string                  `json:"card_brand"`
+	CardPinMode           string                  `json:"card_pin_mode"`
+	CardMagstripeFallback bool                    `json:"card_magstripe_fallback"`
+	CvmPin                bool                    `json:"cvm_pin"`
+	PostbackURL           string                  `json:"postback_url"`
+	PaymentMethod         string                  `json:"payment_method"`
+	CaptureMethod         string                  `json:"capture_method"`
+	AntifraudScore        string                  `json:"antifraud_score"`
+	BoletoURL             string                  `json:"boleto_url"`
+	BoletoBarcode         string                  `json:"boleto_barcode"`
+	BoletoExpirationDate  string                  `json:"boleto_expiration_date"`
+	Referer               string                  `json:"referer"`
+	IP                    string                  `json:"ip"`
+	SubscriptionId        string                  `json:"subscription_id"`
+	Phone                 string                  `json:"phone"`
+	Address               string                  `json:"address"`
+	Customer              CustomerPagarMe         `json:"customer"`
+	Billing               string                  `json:"billing"`
+	Shipping              string                  `json:"shipping"`
+	Items                 []string                `json:"items"`
+	Card                  CardResponseTransaction `json:"card"`
+	SplitRules            string                  `json:"split_rules"`
+	Metadata              struct {
 	} `json:"metadata"`
 	AntifraudMetadata struct {
 	} `json:"antifraud_metadata"`
@@ -137,7 +137,7 @@ type TransactionResponse struct {
 	Device              string `json:"device"`
 	LocalTransaction_id string `json:"local_transaction_id"`
 	LocalTime           string `json:"local_time"`
-	FraudCovered        bool `json:"fraud_covered"`
+	FraudCovered        bool   `json:"fraud_covered"`
 	FraudReimbursed     string `json:"fraud_reimbursed"`
 	OrderId             string `json:"order_id"`
 	RiskLevel           string `json:"risk_level"`

@@ -4,7 +4,7 @@ package domain
 type CustomerInterface interface{}
 
 // This struct is responsible for handle customer information for regular transactions
-type Customer struct {
+type CustomerPagarMe struct {
 	ID               string              `json:"-"`
 	Object           string              `json:"object"`
 	RemoteCustomerID int                 `json:"id"`
@@ -19,7 +19,7 @@ type Customer struct {
 	BornAt           string              `json:"born_at"`
 	Birthday         string              `json:"birthday"`
 	Gender           string              `json:"gender"`
-	DateCreated      string           `json:"date_created"`
+	DateCreated      string              `json:"date_created"`
 	Documents        []CustomerDocuments `json:"documents"`
 }
 
