@@ -1,8 +1,6 @@
 package domain
 
 import (
-	"time"
-
 	"github.com/asaskevich/govalidator"
 )
 
@@ -37,6 +35,11 @@ type Phone struct {
 	Number      int32 `json:"number"`
 }
 
+type FundingInstrument struct {
+	Method     string     `json:"method"`
+	CreditCard CreditCard `json:"creditCard"`
+}
+
 type ShippingAddress struct {
 	Street       string `json:"street"`
 	StreetNumber string `json:"streetNumber"`
@@ -46,11 +49,6 @@ type ShippingAddress struct {
 	State        string `json:"state"`
 	Country      string `json:"country"`
 	ZipCode      int32  `json:"zipCode"`
-}
-
-type FundingInstrument struct {
-	Method     string     `json:"method"`
-	CreditCard CreditCard `json:"creditCard"`
 }
 
 type CreditCard struct {
@@ -64,7 +62,7 @@ type CreditCard struct {
 
 type Holder struct {
 	FullName       string          `json:"fullname"`
-	BirthDate      *time.Time      `json:"birthdate"`
+	BirthDate      string          `json:"birthDate"`
 	TaxDocument    TaxDocument     `json:"taxDocument"`
 	Phone          Phone           `json:"phone"`
 	BillingAddress ShippingAddress `json:"billingAddress"`

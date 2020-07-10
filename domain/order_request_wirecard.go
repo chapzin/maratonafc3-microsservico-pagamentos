@@ -8,8 +8,7 @@ func init() {
 	govalidator.SetFieldsRequiredByDefault(true)
 }
 
-type Order struct {
-	ID                  string              `valid:"-" json:"id"`
+type OrderRequest struct {
 	OwnID               string              `valid:"required" json:"ownId"`
 	Amount              Amount              `valid:"-" json:"amount"`
 	Items               []Item              `valid:"-" json:"items"`
@@ -19,8 +18,8 @@ type Order struct {
 	Receivers           []Receiver          `valid:"-" json:"receivers"`
 }
 
-func NewOrder() *Order {
-	return &Order{}
+func NewOrder() *OrderRequest {
+	return &OrderRequest{}
 }
 
 type Amount struct {
@@ -74,7 +73,7 @@ type AmountRecivers struct {
 	Total   int32 `valid:"type(int)" json:"total"`
 }
 
-func (o *Order) Validate() error {
+func (o *OrderRequest) Validate() error {
 	_, err := govalidator.ValidateStruct(o)
 	if err != nil {
 		return err
