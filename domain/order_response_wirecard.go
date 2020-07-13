@@ -1,64 +1,64 @@
 package domain
 
 type OrderResponse struct {
-	ID                     string
-	Status                 string
-	CreatedAt              string
-	Amount                 AmountResponse
-	Payments               []PaymentWirecard
-	Refunds                []Refund
-	Entries                []Entrie
-	Events                 []Event
-	UpdatedAt              string
-	Links                  Links
-	PayCheckout            PayCheckout
-	PayCreditCard          PayCreditCard
-	PayBoleto              PayBoleto
-	PayOnlineBankDebitItau PayOnlineBankDebitItau
+	ID                     string                 `json:"id"`
+	Status                 string                 `json:"status"`
+	CreatedAt              string                 `json:"createdAt"`
+	Amount                 AmountResponse         `json:"amount"`
+	Payments               []PaymentWirecard      `json:"payments"`
+	Refunds                []Refund               `json:"refunds"`
+	Entries                []Entrie               `json:"entries"`
+	Events                 []Event                `json:"events"`
+	UpdatedAt              string                 `json:"updatedAt"`
+	Links                  Links                  `json:"_links"`
+	PayCheckout            PayCheckout            `json:"payCheckout"`
+	PayCreditCard          PayCreditCard          `json:"payCreditCard"`
+	PayBoleto              PayBoleto              `json:"payBoleto"`
+	PayOnlineBankDebitItau PayOnlineBankDebitItau `json:"payOnlineBankDebitItau"`
 }
 
 type AmountResponse struct {
-	Total          int32
-	Fees           int32
-	Refunds        int32
-	Liquid         int32
-	OtherReceivers int32
-	SubTotals      SubTotalsResponse
+	Total          int32             `json:"total"`
+	Fees           int32             `json:"fees"`
+	Refunds        int32             `json:"refunds"`
+	Liquid         int32             `json:"liquid"`
+	OtherReceivers int32             `json:"otherReceivers"`
+	SubTotals      SubTotalsResponse `json:"subtotals"`
 }
 
 type SubTotalsResponse struct {
-	Items int32
+	Items int32 `json:"items"`
 }
 
 type Event struct {
-	CreatedAt   string
-	Type        string
-	Description string
+	CreatedAt   string `json:"createdAt"`
+	Type        string `json:"type"`
+	Description string `json:"description"`
 }
 
 type Links struct {
-	Self     Self
-	Checkout Checkout
+	Self     Self     `json:"self"`
+	Checkout Checkout `json:"checkout"`
 }
 
 type Self struct {
-	Href string
+	Href string `json:"href"`
 }
 
 type Checkout struct{}
 
 type PayCheckout struct {
-	RedirectHref string
+	RedirectHref string `json:"redirectHref"`
 }
 
 type PayCreditCard struct {
-	RedirectHref string
+	RedirectHref string `json:"redirectHref"`
 }
 
 type PayBoleto struct {
-	RedirectHref string
+	RedirectHref string `json:"redirectHref"`
 }
 
 type PayOnlineBankDebitItau struct {
-	RedirectHref string
+	RedirectHref string `json:"redirectHref"`
 }

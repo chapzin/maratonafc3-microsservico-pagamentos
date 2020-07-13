@@ -55,28 +55,30 @@ type TransactionSubscriptionResponse struct {
 	ID                   string `json:"transaction_id"`
 	Client               *Client
 	Provider             *Gateway
-	ProcessType          string `json:"object"`
-	RemoteSubscriptionID int    `json:"id"`
-	Status               string `json:"status"`
-	CurrentTransaction   struct {
-		RemoteTransactionID  int    `json:"id"`
-		Amount               int    `json:"amount"`
-		Installments         int    `json:"installments"`
-		BoletoURL            string `json:"boleto_url"`
-		BoletoBarcode        string `json:"boleto_barcode"`
-		BoletoExpirationDate string `json:"boleto_expiration_date"`
-	} `json:"current_transaction"`
-	PaymentMethod      string    `json:"payment_method"`
-	CardBrand          string    `json:"card_brand"`
-	RemotePlanID       int       `json:"remote_plan_id"`
-	PostbackURL        string    `json:"postback_url"`
-	CardLastDigits     string    `json:"card_last_digits"`
-	SoftDescriptor     string    `json:"soft_descriptor"`
-	CurrentPeriodStart string    `json:"current_period_start"`
-	CurrentPeriodSEnd  string    `json:"current_period_end"`
-	RefuseReason       string    `json:"refuse_reason"`
-	CreatedAt          time.Time `json:"date_created"`
-	UpdatedAt          time.Time `json:"date_created"`
+	ProcessType          string             `json:"object"`
+	RemoteSubscriptionID int                `json:"id"`
+	Status               string             `json:"status"`
+	CurrentTransaction   CurrentTransaction `json:"current_transaction"`
+	PaymentMethod        string             `json:"payment_method"`
+	CardBrand            string             `json:"card_brand"`
+	RemotePlanID         int                `json:"remote_plan_id"`
+	PostbackURL          string             `json:"postback_url"`
+	CardLastDigits       string             `json:"card_last_digits"`
+	SoftDescriptor       string             `json:"soft_descriptor"`
+	CurrentPeriodStart   string             `json:"current_period_start"`
+	CurrentPeriodSEnd    string             `json:"current_period_end"`
+	RefuseReason         string             `json:"refuse_reason"`
+	CreatedAt            time.Time          `json:"date_created"`
+	UpdatedAt            time.Time          `json:"date_created"`
+}
+
+type CurrentTransaction struct {
+	RemoteTransactionID  int    `json:"id"`
+	Amount               int    `json:"amount"`
+	Installments         int    `json:"installments"`
+	BoletoURL            string `json:"boleto_url"`
+	BoletoBarcode        string `json:"boleto_barcode"`
+	BoletoExpirationDate string `json:"boleto_expiration_date"`
 }
 
 // This is the response of a REGULAR transaction following the pagar.me's output
@@ -129,23 +131,21 @@ type TransactionResponse struct {
 	Items                 []string                `json:"items"`
 	Card                  CardResponseTransaction `json:"card"`
 	SplitRules            string                  `json:"split_rules"`
-	Metadata              struct {
-	} `json:"metadata"`
-	AntifraudMetadata struct {
-	} `json:"antifraud_metadata"`
-	ReferenceKey        string `json:"reference_key"`
-	Device              string `json:"device"`
-	LocalTransaction_id string `json:"local_transaction_id"`
-	LocalTime           string `json:"local_time"`
-	FraudCovered        bool   `json:"fraud_covered"`
-	FraudReimbursed     string `json:"fraud_reimbursed"`
-	OrderId             string `json:"order_id"`
-	RiskLevel           string `json:"risk_level"`
-	ReceiptUrl          string `json:"receipt_url"`
-	Payment             string `json:"payment"`
-	Addition            string `json:"addition"`
-	Discount            string `json:"discount"`
-	PrivateLabel        string `json:"private_label"`
+	Metadata              struct{}                `json:"metadata"`
+	AntifraudMetadata     struct{}                `json:"antifraud_metadata"`
+	ReferenceKey          string                  `json:"reference_key"`
+	Device                string                  `json:"device"`
+	LocalTransaction_id   string                  `json:"local_transaction_id"`
+	LocalTime             string                  `json:"local_time"`
+	FraudCovered          bool                    `json:"fraud_covered"`
+	FraudReimbursed       string                  `json:"fraud_reimbursed"`
+	OrderId               string                  `json:"order_id"`
+	RiskLevel             string                  `json:"risk_level"`
+	ReceiptUrl            string                  `json:"receipt_url"`
+	Payment               string                  `json:"payment"`
+	Addition              string                  `json:"addition"`
+	Discount              string                  `json:"discount"`
+	PrivateLabel          string                  `json:"private_label"`
 }
 
 // Returns the credit card information in a transaction type response
